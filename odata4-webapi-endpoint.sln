@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonItems", "CommonEntities\CommonItems.csproj", "{5D4BE581-D0BC-48FF-B8BF-70A763ECA0F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi_2_2_OData_4", "WebApi_2_2_OData_4\WebApi_2_2_OData_4.csproj", "{6021AD91-5023-4D0B-BD47-25EB2CCF025C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{DBAF269E-52AC-426A-BAF8-48E74A85886C}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D4BE581-D0BC-48FF-B8BF-70A763ECA0F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D4BE581-D0BC-48FF-B8BF-70A763ECA0F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D4BE581-D0BC-48FF-B8BF-70A763ECA0F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D4BE581-D0BC-48FF-B8BF-70A763ECA0F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6021AD91-5023-4D0B-BD47-25EB2CCF025C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6021AD91-5023-4D0B-BD47-25EB2CCF025C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6021AD91-5023-4D0B-BD47-25EB2CCF025C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6021AD91-5023-4D0B-BD47-25EB2CCF025C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
