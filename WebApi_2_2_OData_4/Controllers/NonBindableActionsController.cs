@@ -34,19 +34,17 @@ namespace WebApi_2_2_OData_4.Controllers
             return db.Articles.Take(count);
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("SFunction1")]
-        public List<string> SFunction1(ODataActionParameters param)
+        public List<string> SFunction1(int number)
         {
-            var number = (int)param["number"];
             return new List<string>() { "f1_ ", number.ToString() };
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("SFunction2")]
-        public string SFunction2(ODataActionParameters param)
+        public string SFunction2(int number)
         {
-            var number = (int)param["number"];
             return "f2_ " + number.ToString();
         }
     }

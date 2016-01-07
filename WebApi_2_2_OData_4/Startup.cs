@@ -60,11 +60,11 @@ namespace WebApi_2_2_OData_4
 
             var tig1 = client.EntityType<TestItemGuid>().Collection.Action("GetTitles");
             tig1.Parameter<int>("count");
-            tig1.Returns<string>();
+            tig1.ReturnsCollection<string>();
 
             var tig2 = client.EntityType<TestItemGuid>().Action("GetDisplayText");
 
-            tig2.ReturnsCollection<string>();
+            tig2.Returns<string>();
 
 
             var a6 = client.Action("SAction1");

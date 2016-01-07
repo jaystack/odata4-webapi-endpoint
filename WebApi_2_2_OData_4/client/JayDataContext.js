@@ -144,7 +144,7 @@ var Context = $data.EntityContext.extend('Default.Container', {
 	TestItemTypes: { type: $data.EntitySet, elementType: 'JayData.Test.CommonItems.Entities.TestItemType' },
 	SAction1: { type: $data.ServiceAction, returnType: 'Edm.String', params: [{ name: 'number', type: 'Edm.Int32' }] },
 	SAction2: { type: $data.ServiceAction, returnType: '$data.Queryable', elementType: 'JayData.Test.CommonItems.Entities.Article', EntitySet: 'Articles', params: [{ name: 'count', type: 'Edm.Int32' }] },
-	SFunction1: { type: $data.ServiceAction, returnType: 'Edm.String', params: [{ name: 'number', type: 'Edm.Int32' }] }
+	SFunction1: { type: $data.ServiceFunction, returnType: 'Edm.String', params: [{ name: 'number', type: 'Edm.Int32' }] }
 })
 
 var ctx = new Context('http://localhost:9000/odata')
