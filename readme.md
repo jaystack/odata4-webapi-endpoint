@@ -133,7 +133,7 @@ Extra features:
 			})
 			
 			
-			If you not define your property at client side it JayData use defaults. Default OpenType property is 'Dynamics'.
+			If you not define your property at client side it JayData use defaults. Default OpenType property is 'dynamicProperties'.
 			Or you can define your own property
 			
 			
