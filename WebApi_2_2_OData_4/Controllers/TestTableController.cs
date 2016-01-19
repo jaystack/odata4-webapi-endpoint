@@ -13,10 +13,8 @@ using System.Web.OData;
 
 namespace WebApi_2_2_OData_4.Controllers
 {
-    public class TestTablesController : ODataController
+    public class TestTableController : NewsBaseODataController<TestItem>
     {
-        NewsReaderContext db = new NewsReaderContext();
-
         [EnableQuery]
         public IQueryable<TestItem> Get()
         {
@@ -118,7 +116,6 @@ namespace WebApi_2_2_OData_4.Controllers
         }
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
             base.Dispose(disposing);
         }
     }

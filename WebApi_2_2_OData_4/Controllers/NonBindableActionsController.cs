@@ -47,5 +47,33 @@ namespace WebApi_2_2_OData_4.Controllers
         {
             return "f2_ " + number.ToString();
         }
+
+
+
+
+        [HttpPost]
+        [Route("Delete")]
+        public void Delete()
+        {
+            db.TagConnections.RemoveRange(db.TagConnections);
+            db.UserProfiles.RemoveRange(db.UserProfiles);
+            db.Articles.RemoveRange(db.Articles);
+            db.Categories.RemoveRange(db.Categories);
+            db.Tags.RemoveRange(db.Tags);
+            db.Users.RemoveRange(db.Users);
+            db.TestTable.RemoveRange(db.TestTable);
+            db.TestTable2.RemoveRange(db.TestTable2);
+            db.TestItemGroups.RemoveRange(db.TestItemGroups);
+            db.TestItemTypes.RemoveRange(db.TestItemTypes);
+            db.SaveChanges();
+        }
+
+
+
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+            base.Dispose(disposing);
+        }
     }
 }

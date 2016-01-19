@@ -16,10 +16,8 @@ using System.Web.OData;
 
 namespace WebApi_2_2_OData_4.Controllers
 {
-    public class TestItemTypesController : ODataController
+    public class TestItemTypesController : NewsBaseODataController<TestItemType>
     {
-        NewsReaderContext db = new NewsReaderContext();
-
         public override Task<HttpResponseMessage> ExecuteAsync(HttpControllerContext controllerContext, CancellationToken cancellationToken)
         {
             var response = base.ExecuteAsync(controllerContext, cancellationToken);
@@ -150,7 +148,6 @@ namespace WebApi_2_2_OData_4.Controllers
         }
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
             base.Dispose(disposing);
         }
     }

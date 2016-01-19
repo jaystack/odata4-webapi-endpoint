@@ -67,6 +67,8 @@ namespace WebApi_2_2_OData_4
             tig2.Returns<string>();
 
 
+            var a5 = client.Action("Delete");
+
             var a6 = client.Action("SAction1");
             a6.Parameter<int>("number");
             a6.Returns<string>();
@@ -136,8 +138,8 @@ namespace WebApi_2_2_OData_4
 
             IList<IODataRoutingConvention> conventions = ODataRoutingConventions.CreateDefaultWithAttributeRouting(config, model);
             conventions.Insert(0, new ContainmentRoutingConvention());
-
-            config.MapODataServiceRoute("odata", "odata", model, new DefaultODataPathHandler(), conventions);
+            
+            config.MapODataServiceRoute("odata", "odata", model, new DefaultODataPathHandler(), conventions, new System.Web.OData.Batch.DefaultODataBatchHandler(new HttpServer(config)));
 
             appBuilder.UseWebApi(config);
         }

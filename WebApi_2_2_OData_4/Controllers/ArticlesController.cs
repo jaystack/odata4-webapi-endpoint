@@ -14,9 +14,8 @@ using System.Web.OData;
 
 namespace WebApi_2_2_OData_4.Controllers
 {
-    public class ArticlesController : ODataController
+    public class ArticlesController : NewsBaseODataController<Article>
     {
-        NewsReaderContext db = new NewsReaderContext();
 
         [EnableQuery]
         public IQueryable<Article> Get()
@@ -159,10 +158,8 @@ namespace WebApi_2_2_OData_4.Controllers
 
 
 
-
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
             base.Dispose(disposing);
         }
     }

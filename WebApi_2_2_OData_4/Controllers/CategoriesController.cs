@@ -13,11 +13,9 @@ using System.Web.OData;
 
 namespace WebApi_2_2_OData_4.Controllers
 {
-    public class CategoriesController : ODataController
+    public class CategoriesController : NewsBaseODataController<Category>
     {
-        NewsReaderContext db = new NewsReaderContext();
-
-        [EnableQuery]
+        [EnableQuery(MaxAnyAllExpressionDepth=5)]
         public IQueryable<Category> Get()
         {
             return db.Categories;
@@ -133,7 +131,6 @@ namespace WebApi_2_2_OData_4.Controllers
         }
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
             base.Dispose(disposing);
         }
     }
