@@ -66,6 +66,9 @@ namespace WebApi_2_2_OData_4
 
             tig2.Returns<string>();
 
+            var tig3 = client.EntityType<TestItemGuid>().Action("Concatenate");
+            tig3.CollectionParameter<string>("values");
+            tig3.Returns<string>();
 
             var a5 = client.Action("Delete");
 

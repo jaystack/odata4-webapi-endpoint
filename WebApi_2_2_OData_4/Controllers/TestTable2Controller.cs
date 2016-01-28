@@ -166,6 +166,13 @@ namespace WebApi_2_2_OData_4.Controllers
             return string.Format("{0} - {1}", key.ToString(), "item");
         }
 
+        [HttpPost]
+        [Route("Concatenate")]
+        public string Concatenate([FromODataUri]Guid key, ODataActionParameters param)
+        {
+            return string.Join(" - ", param["values"] as IEnumerable<string>);
+        }
+
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
