@@ -13,7 +13,7 @@ namespace JayData.Test.CommonItems.Entities
         public int Id { get; set; }
         public string Title { get; set; }
 
-        public IDictionary<string, object> ttt { get; set; }
+        //public IDictionary<string, object> ttt { get; set; }
     }
 
 

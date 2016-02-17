@@ -17,7 +17,7 @@ namespace WebApi_2_2_OData_4.Controllers
     public class ArticlesController : NewsBaseODataController<Article>
     {
 
-        [EnableQuery]
+        [EnableQuery(MaxExpansionDepth = 10)]
         public IQueryable<Article> Get()
         {
             return db.Articles;

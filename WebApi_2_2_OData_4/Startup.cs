@@ -38,7 +38,7 @@ namespace WebApi_2_2_OData_4
             client.EntitySet<User>("Users");
             var art = client.EntitySet<Article>("Articles");
             var aa = client.EntityType<Article>();
-            aa.DerivesFrom<MyTClass>();
+            //aa.DerivesFrom<MyTClass>();
             client.EntitySet<UserProfile>("UserProfiles");
 
             //var mc = client.EntityType<MyTClass>();
@@ -46,7 +46,7 @@ namespace WebApi_2_2_OData_4
 
             var c = client.EntitySet<Category>("Categories");
             var cc = client.EntityType<Category>();
-            cc.DerivesFrom<MyTClass>();
+            //cc.DerivesFrom<MyTClass>();
             client.EntitySet<Tag>("Tags");
             client.EntitySet<TestItem>("TestTable");
             client.EntitySet<TagConnection>("TagConnections");
@@ -111,24 +111,24 @@ namespace WebApi_2_2_OData_4
             var model = client.GetEdmModel();
 
             const string namespaceName = "https://jaystack.com/jaydata/schema";
-            var type = "JayData.Test.CommonItems.Entities.MyTClass";
-            const string localName = "OpenProperty";
+            //var type = "JayData.Test.CommonItems.Entities.MyTClass";
+            //const string localName = "OpenProperty";
 
-            var stringType = EdmCoreModel.Instance.GetString(true);
-            var value = new EdmStringConstant(stringType, "Dynamics");
+            //var stringType = EdmCoreModel.Instance.GetString(true);
+            //var value = new EdmStringConstant(stringType, "Dynamics");
 
 
-            model.SetAnnotationValue((IEdmEntityType)model.FindType(type), namespaceName, localName, value);
+            //model.SetAnnotationValue((IEdmEntityType)model.FindType(type), namespaceName, localName, value);
 
-            var valueT = new EdmStringConstant(stringType, "Display");
-            model.SetAnnotationValue(((IEdmEntityType)model.FindType(type)).FindProperty("Title"), namespaceName, "mode", valueT);
+            //var valueT = new EdmStringConstant(stringType, "Display");
+            //model.SetAnnotationValue(((IEdmEntityType)model.FindType(type)).FindProperty("Title"), namespaceName, "mode", valueT);
 
             
             
             UpgradeBidirectionalNavigationProperties(model, "Articles", "Categories", "JayData.Test.CommonItems.Entities.Article", "JayData.Test.CommonItems.Entities.Category", "Category", "Articles", EdmMultiplicity.ZeroOrOne, EdmMultiplicity.Many);
 
-            UpgradeBidirectionalNavigationProperties(model, "Articles", "Users", "JayData.Test.CommonItems.Entities.Article", "JayData.Test.CommonItems.Entities.User", "Reviewer", "RevieweredArticles", EdmMultiplicity.ZeroOrOne, EdmMultiplicity.Many);
-            UpgradeBidirectionalNavigationProperties(model, "Articles", "Users", "JayData.Test.CommonItems.Entities.Article", "JayData.Test.CommonItems.Entities.User", "Author", "AuthoredArticles", EdmMultiplicity.ZeroOrOne, EdmMultiplicity.Many);
+            UpgradeBidirectionalNavigationProperties(model, "Articles", "Users", "JayData.Test.CommonItems.Entities.Article", "JayData.Test.CommonItems.Entities.User", "Reviewer", "ReviewedArticles", EdmMultiplicity.ZeroOrOne, EdmMultiplicity.Many);
+            UpgradeBidirectionalNavigationProperties(model, "Articles", "Users", "JayData.Test.CommonItems.Entities.Article", "JayData.Test.CommonItems.Entities.User", "Author", "Articles", EdmMultiplicity.ZeroOrOne, EdmMultiplicity.Many);
 
             UpgradeBidirectionalNavigationProperties(model, "Users", "UserProfiles", "JayData.Test.CommonItems.Entities.User", "JayData.Test.CommonItems.Entities.UserProfile", "Profile", "User", EdmMultiplicity.ZeroOrOne, EdmMultiplicity.One);
 

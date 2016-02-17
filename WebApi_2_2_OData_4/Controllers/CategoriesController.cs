@@ -15,7 +15,7 @@ namespace WebApi_2_2_OData_4.Controllers
 {
     public class CategoriesController : NewsBaseODataController<Category>
     {
-        [EnableQuery(MaxAnyAllExpressionDepth=5)]
+        [EnableQuery(MaxAnyAllExpressionDepth = 5, MaxExpansionDepth = 10)]
         public IQueryable<Category> Get()
         {
             return db.Categories;
