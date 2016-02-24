@@ -69,6 +69,17 @@ namespace WebApi_2_2_OData_4.Controllers
         }
 
 
+        [HttpPost]
+        [Route("InitDb")]
+        public string InitDb()
+        {
+            Delete();
+            DbInitializer.BuildInitData(db);
+            db.SaveChanges();
+            return "ok";
+        }
+
+
 
         protected override void Dispose(bool disposing)
         {

@@ -34,6 +34,14 @@ namespace JayData.Test.WebApi_2_2_OData_4.Model
     {
         protected override void Seed(NewsReaderContext context)
         {
+            DbInitializer.BuildInitData(context);
+        }
+    }
+
+
+    public class DbInitializer {
+        public static void BuildInitData(NewsReaderContext context)
+        {
             var usr1 = new User { UserType = UserType.Admin, LoginName = "Usr1", Email = "usr1@company.com", Profile = new UserProfile { FullName = "Full Name", Bio = "Bio1", Birthday = new DateTime(1975, 1, 1), Location = new Location { City = "City 1", Zip = 1117, Country = "Country 1", Address = "Test data1" } } };
             var usr2 = new User { UserType = UserType.Guest, LoginName = "Usr2", Email = "usr2@company.com", Profile = new UserProfile { FullName = "Full Name", Bio = "Bio2", Birthday = new DateTime(1976, 2, 1), Location = new Location { City = "City 2", Zip = 1118, Country = "Country 2", Address = "Test data2" } } };
             var usr3 = new User { UserType = UserType.Customer, LoginName = "Usr3", Email = "usr3@company.com", Profile = new UserProfile { FullName = "Full Name", Bio = "Bio3", Birthday = new DateTime(1977, 3, 1), Location = new Location { City = "City 3", Zip = 1119, Country = "Country 3", Address = "Test data3" } } };
@@ -141,6 +149,8 @@ namespace JayData.Test.WebApi_2_2_OData_4.Model
             context.TestItemTypes.Add(new TestItemType { b0 = false, b1 = 5, d0 = DateTime.Now, de0 = (decimal)2.7, g0 = Guid.NewGuid(), i0 = 47, i16 = 29, i64 = 1338, Id = 3, n0 = 44.5, s0 = "xxx", si0 = 5.25f });
 
 
+        
+        
         }
     }
 }

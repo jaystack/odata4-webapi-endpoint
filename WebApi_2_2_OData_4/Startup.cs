@@ -71,6 +71,7 @@ namespace WebApi_2_2_OData_4
             tig3.Returns<string>();
 
             var a5 = client.Action("Delete");
+            var init = client.Action("InitDb");
 
             var a6 = client.Action("SAction1");
             a6.Parameter<int>("number");
