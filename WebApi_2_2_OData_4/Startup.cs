@@ -89,6 +89,17 @@ namespace WebApi_2_2_OData_4
             a8.IncludeInServiceDocument = false;
             a8.Returns<string>();
 
+            var a9 = client.EntityType<Category>().Collection.Function("SFunction1");
+            a9.Parameter<int>("p1");
+            a9.Parameter<string>("p2");
+            a9.CollectionParameter<string>("p3");
+            a9.ReturnsCollection<string>();
+
+            var a10 = client.EntityType<Category>().Collection.Action("SAction1");
+            a10.Parameter<int>("p1");
+            a10.Parameter<string>("p2");
+            a10.CollectionParameter<string>("p3");
+            a10.ReturnsCollection<string>();
 
             client.EntityType<Article>().Ignore(a => a.Category);
             client.EntityType<Category>().Ignore(a => a.Articles);

@@ -125,6 +125,26 @@ namespace WebApi_2_2_OData_4.Controllers
             return "catTitle";
         }
 
+
+
+        [HttpGet]
+        [Route("SFunction1")]
+        public List<string> SFunction1([FromODataUri]int p1, [FromODataUri]string p2, [FromODataUri]IEnumerable<string> p3)
+        {
+            return new List<string>() { "f1_ ", p1.ToString(), p2 }.Concat(p3).ToList();
+        }
+
+        [HttpPost]
+        [Route("SAction1")]
+        public List<string> SAction1(ODataActionParameters param)
+        {
+            var p1 = (int)param["p1"];
+            var p2 = (string)param["p2"];
+            var p3 = param["p3"] as IEnumerable<string>;
+            return new List<string>() { "a1_ ", p1.ToString(), p2 }.Concat(p3).ToList();
+        }
+
+
         private bool ProductExists(int key)
         {
             return db.Categories.Any(p => p.Id == key);
