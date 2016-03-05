@@ -68,32 +68,6 @@ namespace WebApi_2_2_OData_4.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        //[AcceptVerbs("DELETE")]
-        //public async Task<IHttpActionResult> DeleteRef([FromODataUri] int key, [FromODataUri] string relatedKey,
-        //    string navigationProperty, [FromBody] Uri link)
-        //{
-        //    var target = await db.Set<TElement>().FindAsync(key);
-        //    if (target == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var prop = target.GetType().GetProperty(navigationProperty);
-        //    if (prop != null)
-        //    {
-        //        var values = prop.GetValue(target);
-        //        if (!prop.PropertyType.IsClass)
-        //        {
-
-        //        }
-
-        //        prop.SetValue(target, null);
-        //    }
-
-        //    await db.SaveChangesAsync();
-        //    return StatusCode(HttpStatusCode.NoContent);
-        //}
-
         public async Task<object> GetValueUri(HttpRequestMessage request, Uri uri, PropertyInfo prop)
         {
             if (uri == null)
@@ -130,39 +104,6 @@ namespace WebApi_2_2_OData_4.Controllers
             return element;
         }
         #endregion
-
-
-        //protected async Task BindNavigation(TElement entity) {
-
-        //    StringBuilder sb = new StringBuilder();
-        //    byte[] buffer = new byte[8000];
-        //    int read = 0;
-
-        //    read = Request.GetOwinContext().Request.Body.Read(buffer, 0, buffer.Length);
-        //    while (read > 0)
-        //    {
-        //        sb.Append(Encoding.UTF8.GetString(buffer));
-        //        buffer = new byte[8000];
-        //        read = Request.GetOwinContext().Request.Body.Read(buffer, 0, buffer.Length);
-        //    }
-
-        //    string requestFromPost = sb.ToString();
-
-
-        //    //System.IO.StreamReader reader = new System.IO.StreamReader(Request.GetOwinContext().Request.Body);
-        //    //reader.BaseStream.Position = 0;
-        //    //string requestFromPost = reader.ReadToEnd();
-
-
-            
-        //    //var formData2 = await Request.GetOwinContext().Request.ReadFormAsync() as IEnumerable<KeyValuePair<string, string[]>>;
-        //    var a = 22;
-        
-        //}
-
-
-
-
 
 
         protected override void Dispose(bool disposing)

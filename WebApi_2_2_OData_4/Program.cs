@@ -12,10 +12,12 @@ namespace WebApi_2_2_OData_4
     {
         static void Main(string[] args)
         {
-            string baseAddress = "http://localhost:9000/";
+            StartOptions options = new StartOptions();
+            options.Urls.Add("http://localhost:9000");
+            options.Urls.Add("http://odatav4-demo.jaystack.com:9000/");
 
             // Start OWIN host 
-            using (WebApp.Start<Startup>(url: baseAddress))
+            using (WebApp.Start<Startup>(options))
             {
                 // Create HttpCient and make a request to api/values 
                 //HttpClient client = new HttpClient();
