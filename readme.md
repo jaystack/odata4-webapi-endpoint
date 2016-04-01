@@ -8,6 +8,47 @@
 
 #Features:
 
+##Using custom data annotation
+    - Define custom annotations - .NET server-side (Startup.cs)
+        - Add annotation to entity properties
+            var m = model as EdmModel;
+            m.SetVocabularyAnnotation(
+                new EdmAnnotation(model.EntityContainer.FindEntitySet("Categories").EntityType().FindProperty("Title"),
+                    new EdmTerm("UI", "DisplayName", EdmPrimitiveTypeKind.String),
+                    new EdmStringConstant("Category name")));
+        - Add annotation to an entity
+            m.SetVocabularyAnnotation(
+                new EdmAnnotation(model.EntityContainer.FindEntitySet("Categories").EntityType(),
+                    new EdmTerm("UI", "DisplayName", EdmPrimitiveTypeKind.String),
+                    new EdmStringConstant("Categories")));
+
+    - Generate dynamic data model with JayData (client-side) - using $data.initService()
+        $data.initService('http://odatav4-demo.jaystack.com:9000/odata', function(ctx){
+            ...
+        })    
+    
+    - Retrieve annotations with JayData
+        - Retrieve entity property annotation
+            ctx.Categories.elementType.getMetadata('UI.DisplayName', 'Title')
+            
+        - Retrieve entity annotation
+            ctx.Categories.elementType.getMetadata('UI.DisplayName')
+
+    - Avaliable metadata functions on JayData types
+        The property parameter is optional and can be used to retrieve metadata of a particular property. You can retrieve entity annonations without passing the property parameter.
+    
+        - type.hasMetadata(metadataKey [, property])
+            returns: true / false
+            
+        - type.getMetadata(metadataKey [, property])
+            returns: metadata value
+        
+        - type.getAllMetadata([property])
+            returns: object hash with metadata values
+            
+        - type.setMetadata(metadataKey, metadataValue [, property])
+
+
 ##Arrow function support
     - JayData has improved predicates in Queryables. You can use arrow functions for example in filter conditions.
         - Old style

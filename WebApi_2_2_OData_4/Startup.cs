@@ -1,6 +1,7 @@
 ﻿using JayData.Test.CommonItems.Entities;
 using Microsoft.OData.Edm;
 using Microsoft.OData.Edm.Library;
+using Microsoft.OData.Edm.Library.Annotations;
 using Microsoft.OData.Edm.Library.Values;
 using Microsoft.Spatial;
 using Owin;
@@ -122,20 +123,92 @@ namespace WebApi_2_2_OData_4
 
             var model = client.GetEdmModel();
 
-            const string namespaceName = "https://jaystack.com/jaydata/schema";
-            //var type = "JayData.Test.CommonItems.Entities.MyTClass";
-            //const string localName = "OpenProperty";
 
-            //var stringType = EdmCoreModel.Instance.GetString(true);
-            //var value = new EdmStringConstant(stringType, "Dynamics");
+            SetComputed(model, model.EntityContainer.FindEntitySet("Users").EntityType().FindProperty("Id"));
+            SetComputed(model, model.EntityContainer.FindEntitySet("Articles").EntityType().FindProperty("Id"));
+            SetComputed(model, model.EntityContainer.FindEntitySet("UserProfiles").EntityType().FindProperty("Id"));
+            SetComputed(model, model.EntityContainer.FindEntitySet("Categories").EntityType().FindProperty("Id"));
+            SetComputed(model, model.EntityContainer.FindEntitySet("Tags").EntityType().FindProperty("Id"));
+            SetComputed(model, model.EntityContainer.FindEntitySet("TagConnections").EntityType().FindProperty("Id"));
+
+            var m = model as EdmModel;
+            //Categories
+            m.SetVocabularyAnnotation(
+                new EdmAnnotation(model.EntityContainer.FindEntitySet("Categories").EntityType(),
+                    new EdmTerm("UI", "DisplayName", EdmPrimitiveTypeKind.String),
+                    new EdmStringConstant("Categories")));
+
+            m.SetVocabularyAnnotation(
+                new EdmAnnotation(model.EntityContainer.FindEntitySet("Categories").EntityType().FindProperty("Id"),
+                    new EdmTerm("UI", "DisplayName", EdmPrimitiveTypeKind.String),
+                    new EdmStringConstant("Category identifier")));
+            m.SetVocabularyAnnotation(
+                new EdmAnnotation(model.EntityContainer.FindEntitySet("Categories").EntityType().FindProperty("Id"),
+                    new EdmTerm("UI", "ControlHint", EdmPrimitiveTypeKind.String),
+                    new EdmStringConstant("ReadOnly")));
+
+            m.SetVocabularyAnnotation(
+                new EdmAnnotation(model.EntityContainer.FindEntitySet("Categories").EntityType().FindProperty("Title"),
+                    new EdmTerm("UI", "DisplayName", EdmPrimitiveTypeKind.String),
+                    new EdmStringConstant("Category name")));
+            m.SetVocabularyAnnotation(
+                new EdmAnnotation(model.EntityContainer.FindEntitySet("Categories").EntityType().FindProperty("Title"),
+                    new EdmTerm("UI", "ControlHint", EdmPrimitiveTypeKind.String),
+                    new EdmStringConstant("ShortText")));
+
+            //Articles
+            m.SetVocabularyAnnotation(
+                new EdmAnnotation(model.EntityContainer.FindEntitySet("Articles").EntityType(),
+                    new EdmTerm("UI", "DisplayName", EdmPrimitiveTypeKind.String),
+                    new EdmStringConstant("Articles")));
+
+            m.SetVocabularyAnnotation(
+                new EdmAnnotation(model.EntityContainer.FindEntitySet("Articles").EntityType().FindProperty("Id"),
+                    new EdmTerm("UI", "DisplayName", EdmPrimitiveTypeKind.String),
+                    new EdmStringConstant("Article identifier")));
+            m.SetVocabularyAnnotation(
+                new EdmAnnotation(model.EntityContainer.FindEntitySet("Articles").EntityType().FindProperty("Id"),
+                    new EdmTerm("UI", "ControlHint", EdmPrimitiveTypeKind.String),
+                    new EdmStringConstant("ReadOnly")));
+
+            m.SetVocabularyAnnotation(
+                new EdmAnnotation(model.EntityContainer.FindEntitySet("Articles").EntityType().FindProperty("Title"),
+                    new EdmTerm("UI", "DisplayName", EdmPrimitiveTypeKind.String),
+                    new EdmStringConstant("Article title")));
+            m.SetVocabularyAnnotation(
+                new EdmAnnotation(model.EntityContainer.FindEntitySet("Articles").EntityType().FindProperty("Title"),
+                    new EdmTerm("UI", "ControlHint", EdmPrimitiveTypeKind.String),
+                    new EdmStringConstant("ShortText")));
+
+            m.SetVocabularyAnnotation(
+                new EdmAnnotation(model.EntityContainer.FindEntitySet("Articles").EntityType().FindProperty("Lead"),
+                    new EdmTerm("UI", "DisplayName", EdmPrimitiveTypeKind.String),
+                    new EdmStringConstant("Article lead")));
+            m.SetVocabularyAnnotation(
+                new EdmAnnotation(model.EntityContainer.FindEntitySet("Articles").EntityType().FindProperty("Lead"),
+                    new EdmTerm("UI", "ControlHint", EdmPrimitiveTypeKind.String),
+                    new EdmStringConstant("ShortText")));
+
+            m.SetVocabularyAnnotation(
+                new EdmAnnotation(model.EntityContainer.FindEntitySet("Articles").EntityType().FindProperty("Body"),
+                    new EdmTerm("UI", "DisplayName", EdmPrimitiveTypeKind.String),
+                    new EdmStringConstant("Article body")));
+            m.SetVocabularyAnnotation(
+                new EdmAnnotation(model.EntityContainer.FindEntitySet("Articles").EntityType().FindProperty("Body"),
+                    new EdmTerm("UI", "ControlHint", EdmPrimitiveTypeKind.String),
+                    new EdmStringConstant("LongText")));
+
+            m.SetVocabularyAnnotation(
+                new EdmAnnotation(model.EntityContainer.FindEntitySet("Articles").EntityType().FindProperty("RowVersion"),
+                    new EdmTerm("UI", "ControlHint", EdmPrimitiveTypeKind.String),
+                    new EdmStringConstant("Hidden")));
+
+            m.SetVocabularyAnnotation(
+                new EdmAnnotation(model.EntityContainer.FindEntitySet("Articles").EntityType().FindProperty("CreateDate"),
+                    new EdmTerm("UI", "ControlHint", EdmPrimitiveTypeKind.String),
+                    new EdmStringConstant("ReadOnly")));
 
 
-            //model.SetAnnotationValue((IEdmEntityType)model.FindType(type), namespaceName, localName, value);
-
-            //var valueT = new EdmStringConstant(stringType, "Display");
-            //model.SetAnnotationValue(((IEdmEntityType)model.FindType(type)).FindProperty("Title"), namespaceName, "mode", valueT);
-
-            
             
             UpgradeBidirectionalNavigationProperties(model, "Articles", "Categories", "JayData.Test.CommonItems.Entities.Article", "JayData.Test.CommonItems.Entities.Category", "Category", "Articles", EdmMultiplicity.ZeroOrOne, EdmMultiplicity.Many);
 
@@ -188,6 +261,20 @@ namespace WebApi_2_2_OData_4
             partnerProperty.OnDelete = EdmOnDeleteAction.None;
 
             fromSet.AddNavigationTarget(fromType.AddBidirectionalNavigation(partsProperty, partnerProperty), partnerSet);
+        }
+
+        public static void SetAnnotation(IEdmModel model, IEdmProperty field, string ns, string name, EdmPrimitiveTypeKind typeKind)
+        {
+            var m = model as EdmModel;
+            m.AddVocabularyAnnotation(
+                new EdmAnnotation(field,
+                    new EdmTerm(ns, name, typeKind),
+                    new EdmBooleanConstant(true)));
+        }
+
+        public static void SetComputed(IEdmModel model, IEdmProperty field)
+        {
+            SetAnnotation(model, field, "Org.OData.Core.V1", "Computed", EdmPrimitiveTypeKind.Boolean);
         }
     }
 }
