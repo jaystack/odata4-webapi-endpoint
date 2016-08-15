@@ -55,6 +55,8 @@ namespace WebApi_2_2_OData_4
             client.EntitySet<TestItemGroup>("TestItemGroups");
             client.EntitySet<TestItemType>("TestItemTypes");
 
+            client.EntitySet<Inheritance.GenericArticle>("GenericArticles");
+
 
             client.AddEnumType(typeof(UserType));
 
