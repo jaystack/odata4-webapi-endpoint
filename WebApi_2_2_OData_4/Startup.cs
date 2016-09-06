@@ -56,6 +56,7 @@ namespace WebApi_2_2_OData_4
             client.EntitySet<TestItemType>("TestItemTypes");
 
             client.EntitySet<Inheritance.GenericArticle>("GenericArticles");
+            client.EntitySet<Inheritance.User>("InheritanceUsers");
 
 
             client.AddEnumType(typeof(UserType));
@@ -122,6 +123,18 @@ namespace WebApi_2_2_OData_4
 
             client.EntityType<TestItemGuid>().Ignore(a => a.Group);
             client.EntityType<TestItemGroup>().Ignore(a => a.Items);
+
+
+
+            client.EntityType<Inheritance.GenericArticle>().Ignore(a => a.Authors);
+            client.EntityType<Inheritance.GenericArticle>().Ignore(a => a.CreatedBy);
+            client.EntityType<Inheritance.PublicArticle>().Ignore(a => a.PublishedBy);
+            client.EntityType<Inheritance.PublicArticle>().Ignore(a => a.RelatedAuthors);
+            client.EntityType<Inheritance.User>().Ignore(a => a.PublishedArticles);
+            client.EntityType<Inheritance.User>().Ignore(a => a.CreatedArticles);
+            client.EntityType<Inheritance.User>().Ignore(a => a.RelatedPublicArticle);
+            client.EntityType<Inheritance.User>().Ignore(a => a.RelatedArticle);
+
 
             var model = client.GetEdmModel();
 
@@ -223,6 +236,13 @@ namespace WebApi_2_2_OData_4
             UpgradeBidirectionalNavigationProperties(model, "TagConnections", "Tags", "JayData.Test.CommonItems.Entities.TagConnection", "JayData.Test.CommonItems.Entities.Tag", "Tag", "Articles", EdmMultiplicity.ZeroOrOne, EdmMultiplicity.Many);
 
             UpgradeBidirectionalNavigationProperties(model, "TestTable2", "TestItemGroups", "JayData.Test.CommonItems.Entities.TestItemGuid", "JayData.Test.CommonItems.Entities.TestItemGroup", "Group", "Items", EdmMultiplicity.ZeroOrOne, EdmMultiplicity.Many);
+
+
+            UpgradeBidirectionalNavigationProperties(model, "Users", "GenericArticles", "Inheritance.User", "Inheritance.GenericArticle", "RelatedArticle", "Authors", EdmMultiplicity.ZeroOrOne, EdmMultiplicity.Many);
+            UpgradeBidirectionalNavigationProperties(model, "Users", "GenericArticles", "Inheritance.User", "Inheritance.PublicArticle", "RelatedPublicArticle", "RelatedAuthors", EdmMultiplicity.ZeroOrOne, EdmMultiplicity.Many);
+            UpgradeBidirectionalNavigationProperties(model, "GenericArticles", "Users", "Inheritance.GenericArticle", "Inheritance.User", "CreatedBy", "CreatedArticles", EdmMultiplicity.ZeroOrOne, EdmMultiplicity.Many);
+            UpgradeBidirectionalNavigationProperties(model, "GenericArticles", "Users", "Inheritance.PublicArticle", "Inheritance.User", "PublishedBy", "PublishedArticles", EdmMultiplicity.ZeroOrOne, EdmMultiplicity.Many);
+
 
 
 
