@@ -55,6 +55,7 @@ namespace WebApi_2_2_OData_4.Controllers
         [Route("Delete")]
         public void Delete()
         {
+            TestTable3Controller.Reset();
             db.TagConnections.RemoveRange(db.TagConnections);
             db.UserProfiles.RemoveRange(db.UserProfiles);
             db.Articles.RemoveRange(db.Articles);

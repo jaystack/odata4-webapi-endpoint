@@ -14,7 +14,7 @@ namespace WebApi_2_2_OData_4
         {
             StartOptions options = new StartOptions();
             options.Urls.Add("http://localhost:9000");
-            options.Urls.Add("http://odatav4-demo.jaystack.com:9000/");
+            options.Urls.Add("http://ec2-18-185-16-236.eu-central-1.compute.amazonaws.com:9000/");
 
             // Start OWIN host 
             using (WebApp.Start<Startup>(options))

@@ -52,6 +52,7 @@ namespace WebApi_2_2_OData_4
             client.EntitySet<TestItem>("TestTable");
             client.EntitySet<TagConnection>("TagConnections");
             client.EntitySet<TestItemGuid>("TestTable2");
+            client.EntitySet<TestItem3>("TestTable3");
             client.EntitySet<TestItemGroup>("TestItemGroups");
             client.EntitySet<TestItemType>("TestItemTypes");
 
@@ -73,6 +74,9 @@ namespace WebApi_2_2_OData_4
             var tig3 = client.EntityType<TestItemGuid>().Action("Concatenate");
             tig3.CollectionParameter<string>("values");
             tig3.Returns<string>();
+
+            var tig4 = client.EntityType<TestItem3>().Collection.Action("Clear");
+            tig4.Returns<int>();
 
             var a5 = client.Action("Delete");
             var init = client.Action("InitDb");

@@ -80,6 +80,7 @@
     <Compile Include="Entities\TagConnection.cs" />
     <Compile Include="Entities\TestItem.cs" />
     <Compile Include="Entities\TestItemGroup.cs" />
+    <Compile Include="Entities\TestItem3.cs" />
     <Compile Include="Entities\TestItemGuid.cs" />
     <Compile Include="Entities\TestItemType.cs" />
     <Compile Include="Entities\User.cs" />

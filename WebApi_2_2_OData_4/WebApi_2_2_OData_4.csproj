@@ -126,6 +126,7 @@
     <Compile Include="Controllers\NonBindableActionsController.cs" />
     <Compile Include="Controllers\TestItemTypesController.cs" />
     <Compile Include="Controllers\TestItemGroupsController.cs" />
+    <Compile Include="Controllers\TestTable3Controller.cs" />
     <Compile Include="Controllers\TestTable2Controller.cs" />
     <Compile Include="Controllers\TagConnectionsController.cs" />
     <Compile Include="Controllers\TestTableController.cs" />
